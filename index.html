@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./script/script.js" type="module"></script>
+  <link rel="stylesheet" href="./index.css">  
+  <title>CMS</title>
+</head>
+
+<body>
+<!-- -------------- CRM  Модальное окно -------------  -->
+<!-- -------------- CRM  Модальное окно -------------  -->
+
+<!-- -----------------  CMS-Table   ----------------------- -->
+<!-- -----------------  CMS-Table   ----------------------- -->
+
+<!-- <div class="overlay-cms"> -->
+  <div class="container-cms cms">    
+    <div class="cms__title">
+      <h1 class="title">CMS</h1>
+      <p class="subtitle">Итоговая стоимость: 
+        <span class="subtitle-currency"> $
+          <span class="subtitle-cash"></span>
+        </span>
+      </p>
+    </div>
+
+    <div class="cms__inner">
+      <div class="features">
+        <button class="features__filter">Фильтр</button>
+        <form class="features__form" action="https://jsonplaceholder.typicode.com/posts" method="post">
+          <button class="features__search"></button>
+          <input class="features__input" type="search" placeholder="Поиск по наименованию и категории">
+        </form>
+          <button class="button features__button">Добавить товар</button>
+      </div>
+      
+      <table class="table">
+
+        <thead class="thead">
+          <tr class="thead__row">
+            <th>ID</th>
+            <th>Наименование</th>
+            <th>Категория</th>
+            <th>ед/изм</th>
+            <th>количество</th>
+            <th>цена</th>
+            <th>ИТОГ</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody class="tbody">
+          
+        </tbody>
+      </table>
+
+      <div class="cms__footer">      
+        <div class="footer__pages">
+          <div class="footer__show">Показывать на странице: 10</div>
+          <button class="footer__pages-btn"></button>
+        </div>        
+        <div class="footer__interval">1-10 of 276</div>
+        <button class="arrow arrow_left"></button>
+        <button class="arrow arrow_right"></button>
+      </div>
+
+    </div>    
+
+  </div>
+<!-- </div> -->
+
+
+</body>
+</html>

@@ -1,0 +1,245 @@
+.overlay {
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 100%;
+  margin: auto;
+  /* opacity: 0; */
+  opacity: 1;
+  visibility: visible;
+  /* visibility: hidden; */
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.container-crm {    
+  position: relative; /*чтобы выставить close*/
+  top: 100px;
+  right: 0;
+  left: 0;
+  margin: auto;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.25);
+  max-width: 792px;
+  padding: 32px 106px 39px;
+  background-color: var(--container-color);  
+}
+
+/* .overlay.is-visible {    
+  opacity: 1;
+  visibility: visible;
+  transition: 0.2s;
+} */
+
+.form {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.form__wrapper-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 19px;
+  border-bottom: 1px solid var(--table-border-color);
+  margin-bottom: 26px;
+}
+
+.form__title {
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+/* .form__id {
+  font-size: 10px;
+  color: #c5c5c5;
+} */
+
+.form__id, 
+.vendor-code__id {
+  font-size: 10px;
+  color: #c5c5c5;
+}
+
+.form__inner {
+  background-color: var(--light-text-color);
+  border-radius: 8px;
+  padding: 25px 49px 31px 7px;
+  margin-bottom: 25px;
+}
+
+.form__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 60px;
+  gap: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+.item__label {
+  display: block;
+  margin-bottom: 5px;
+  padding-left: 10px;
+}
+
+.item__input {
+  border-radius: 6px;
+  height: 40px;
+  width: 100%;
+  border: none;
+  background-color: var(--unknown-color);
+}
+
+.item_descript {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.item_count {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.item__textarea {
+  border-radius: 6px;
+  height: 85%;
+  width: 100%;
+  border: none;
+  background-color: var(--unknown-color);
+}
+
+.discount__fieldset {
+  padding: 0;
+  height: 100%;
+  border: none;
+}
+
+.discount__inner {
+  display: flex;
+  gap: 10px;  
+  height: 40px;  
+}
+
+.discount__checkbox {  
+  appearance: none;  
+  height: 40px;
+  width: 40px;  
+  background-color: var(--unknown-color);
+  border-radius: 6px;
+}
+
+.discount__checkbox:checked {
+  background-image: url("../assets/checked.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 70%
+}
+
+.discount__checkbox_checked {
+  background-image: url("../assets/checked.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 70%
+}
+
+.discount__input {
+  flex-grow: 1; 
+  background-color: var(--unknown-color);
+  border: none;
+  border-radius: 6px;
+}
+
+.form__button {
+  margin-right: 0px;
+  margin-left: auto;
+  font-size: 14px;
+  width: 250px;
+}
+
+.crm__footer {
+  display: flex;
+  gap: 10px;
+}
+
+.footer__sum {  
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--main-name-color);
+  padding-left: 28px;
+}
+
+.footer__sum-currency,
+.footer__sum-cash {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--accent-btn-color);  
+}
+
+.footer__button {  
+  font-size: 16px;
+  margin-right: 49px;
+  margin-left: auto;
+  width: 200px;
+}
+
+@media(max-width: 760px) {
+  .container-crm {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .form__inner {
+    padding-right: 7px;
+  }
+  .form__button {
+    width: 50%;
+    font-size: 12px;
+  }
+}
+
+@media(max-width: 600px) {
+  .container-crm {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .crm__button {
+    font-size: 14px;
+    margin-right: 6px;
+  }
+}
+
+@media(max-width: 480px) {
+  .container-crm {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .form__title {
+    font-size: 20px;
+  }
+  .container-inner {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .form__list {
+    grid-template-columns: 1fr;
+  }
+  .item_descript {
+    grid-column: 1;
+    grid-row: 5 / span 2;
+  }
+  .item_count {
+    grid-column: 1;
+  }
+  .form__button {
+    margin-left: 7px;
+    width: 200px;
+  }
+  .footer {
+    flex-direction: column;
+  }
+  .footer__sum {
+    margin-bottom: 10px;
+  }
+  .crm__button {
+    margin-left: 28px;    
+  }
+}

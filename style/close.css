@@ -1,0 +1,31 @@
+.close {  
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 30px;
+  height: 30px;  
+  background-color: transparent;
+  border: none;
+}
+
+.close__dush {
+  display: block;  
+  width: 100%;
+  height: 3px;
+  background-color: var(--main-name-color);  
+}
+
+.close__dush_first {
+  transform: translateY(1px) rotate(45deg);
+}
+.close__dush_second {
+  transform: translateY(-2px) rotate(-45deg);  
+}
+
+@media(max-width: 480px) {
+  .close {    
+    width: 30px;
+    height: 30px;
+    top: 25px;
+  }
+}  
