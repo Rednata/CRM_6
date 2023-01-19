@@ -149,10 +149,61 @@
   border-radius: 6px;
 }
 
-.form__button {
-  margin-right: 0px;
+.form__label {
+  position: relative;
+  display: block;
+  width: 250px;  
+  margin-right: 0;
   margin-left: auto;
   font-size: 14px;
+  background-color: var(--accent-btn-color);
+  color: transparent;
+  border: none; 
+  border-radius: 6px;
+  text-transform: uppercase;  
+  height: 39px;
+  font-weight: 600;    
+}
+
+.form__label:before {
+  content: 'Добавить изображение';
+  position: absolute;
+  display: block;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;  
+  color: var(--light-text-color);
+}
+
+.form__input {
+  width: 100%;
+  opacity: 0;  
+}
+
+.form__img {
+  display: block;
+  margin: 0 auto;
+  padding: 30px 0 0 42px;  
+}
+
+.form__addImg {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__addImg_error {
+  flex-direction: row-reverse;
+  gap: 29px;
+}
+
+.size__message {
+  color: #d80101;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;  
+  letter-spacing: 0.1em;
   width: 250px;
 }
 
