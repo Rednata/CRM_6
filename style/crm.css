@@ -81,7 +81,14 @@
   height: 40px;
   width: 100%;
   border: none;
-  background-color: var(--unknown-color);
+  background-color: var(--unknown-color);  
+}
+
+.item__input:focus, 
+.item__input:active,
+.item__textarea:focus, 
+.item__textarea:active {
+  outline: 1px solid rgb(230, 205, 126); 
 }
 
 .item_descript {

@@ -62,8 +62,7 @@ const showModal = async (goodEdit) => {
               
               <li class="item item_descript">
                 <label class="item__label" for="descript">Описание</label>
-                <textarea class="item__textarea" name="descript" id="descript" minlength="80" required>
-                </textarea>
+                <textarea class="item__textarea" name="descript" id="descript" minlength="80" required> </textarea>
               </li>
               
               <li class="item item_count">
