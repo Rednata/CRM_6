@@ -1,5 +1,5 @@
 import { showModal } from './showModal.js';
-import { changeForm, submitForm } from './functionForm.js';
+import { changeForm, submitForm, validForm } from './functionForm.js';
 import { previewImg } from './getImgFile.js';
 
 const onfeaturesButtonClick = () => {
@@ -8,6 +8,7 @@ const onfeaturesButtonClick = () => {
     await showModal();
     changeForm();
     previewImg();
+    validForm();
     submitForm();
   });
 
