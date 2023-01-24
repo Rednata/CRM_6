@@ -1,8 +1,7 @@
 import { fetchSenderEdit, fetchSender } from './fetchControl.js';
 
 const isDiscountChecked = (target) => {
-  const discountInput = document.querySelector('.discount__input');
-  console.log('===============', discountInput);
+  const discountInput = document.querySelector('.discount__input');  
   if (target.checked) {
     discountInput.disabled = false;
   } else {
@@ -45,16 +44,50 @@ const resetForm = () => {
   form.reset();
 };
 
+const getValidInputValue = (target, reg) => {
+  target.addEventListener('input', () => {
+    target.value = target.value.replace(reg, '');
+  });
+};
+
+const validForm = () => {
+  const form = document.querySelector('.form');
+  const inputTitle = form.querySelector('#title');
+  const inputCategory = form.querySelector('#category');
+  const inputDescript = form.querySelector('#descript');
+  const inputUnits = form.querySelector('#units');
+  const inputCount = form.querySelector('#count');
+  const inputPrice = form.querySelector('#price');
+  const inputDiscount = form.querySelector('.discount__input');
+
+  form.addEventListener('click', ({target}) => {
+    if (target === inputTitle
+      || target === inputCategory
+      || target === inputDescript) {
+      const reg = /[^А-ЯЁ ]/i;
+      getValidInputValue(target, reg);
+    } else if (target === inputUnits) {
+      const reg = /[^А-ЯЁ]/i;
+      getValidInputValue(target, reg);
+    } else if (target === inputCount
+      || target === inputPrice
+      || target === inputDiscount) {
+      const reg = /[^0-9]/;
+      getValidInputValue(target, reg);
+    }
+  });
+};
+
 const submitForm = (goodId) => {
   const form = document.querySelector('.form');
-  console.log(form);
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const target = e.target;
     const formData = new FormData(target);
     const newGood = Object.fromEntries(formData);
-    console.log(newGood);
+
     if (goodId) {
       fetchSenderEdit(newGood, goodId)
     } else {
@@ -75,4 +108,4 @@ const closeModal = () => {
   });
 };
 
-export {changeForm, submitForm, resetForm, getModalSumZero, closeModal};
+export {changeForm, submitForm, resetForm, getModalSumZero, closeModal, validForm};
