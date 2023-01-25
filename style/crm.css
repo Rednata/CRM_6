@@ -102,6 +102,22 @@
   background-color: var(--unknown-color);
 }
 
+.item_descript>.item__label_active {
+  color: red;
+}
+
+.item__textarea_active {
+  border: 2px solid red;
+}
+
+.item__textarea:active,
+.item__textarea:focus,
+.item__input:active,
+.item__input:focus {
+  border: 2px solid rgb(226, 166, 55);
+  outline: none;
+}
+
 .discount__fieldset {
   padding: 0;
   height: 100%;
