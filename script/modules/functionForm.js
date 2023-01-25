@@ -50,6 +50,22 @@ const getValidInputValue = (target, reg) => {
   });
 };
 
+const getValidInputValueDescript = (target, reg) => {
+  target.addEventListener('input', () => {
+    const labelTextarea = document.querySelector('.item_descript>.item__label');
+    target.value = target.value.replace(reg, '');
+    if (target.value.length < 80) {
+      target.classList.toggle('item__textarea_active');
+      labelTextarea.textContent = 'Описание должно быть не менее 80 символов';
+      labelTextarea.classList.add('item__label_active');
+    } else {
+      target.classList.toggle('item__textarea_active');
+      labelTextarea.textContent = 'Описание';
+      labelTextarea.classList.remove('item__label_active');
+    }
+  });
+};
+
 const validForm = () => {
   const form = document.querySelector('.form');
   const inputTitle = form.querySelector('#title');
@@ -61,9 +77,13 @@ const validForm = () => {
   const inputDiscount = form.querySelector('.discount__input');
 
   form.addEventListener('click', ({target}) => {
+    if (target === inputDescript) {
+      const reg = /[^А-ЯЁ ]/i;
+      getValidInputValueDescript(target, reg);
+    }
+
     if (target === inputTitle
-      || target === inputCategory
-      || target === inputDescript) {
+      || target === inputCategory) {
       const reg = /[^А-ЯЁ ]/i;
       getValidInputValue(target, reg);
     } else if (target === inputUnits) {
@@ -88,12 +108,17 @@ const submitForm = (goodId) => {
     const formData = new FormData(target);
     const newGood = Object.fromEntries(formData);
 
+    if (newGood.descript.length < 80) {
+      const labelTextarea = document.querySelector('.item_descript>.item__label');
+      labelTextarea.textContent = 'Описание должно быть не менее 80 символов';
+      labelTextarea.classList.add('item__label_active');
+    } else {
     if (goodId) {
       fetchSenderEdit(newGood, goodId)
     } else {
       fetchSender(newGood);
     }
-    resetForm();
+    resetForm();}
   });
 };
 
