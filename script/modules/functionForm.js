@@ -1,4 +1,5 @@
 import { fetchSenderEdit, fetchSender } from './fetchControl.js';
+import { toBase64 } from './getImgFile.js';
 
 const isDiscountChecked = (target) => {
   const discountInput = document.querySelector('.discount__input');  
@@ -101,24 +102,28 @@ const validForm = () => {
 const submitForm = (goodId) => {
   const form = document.querySelector('.form');
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const target = e.target;
     const formData = new FormData(target);
     const newGood = Object.fromEntries(formData);
 
+    newGood.image = await toBase64(newGood.file);
+
     if (newGood.descript.length < 80) {
       const labelTextarea = document.querySelector('.item_descript>.item__label');
       labelTextarea.textContent = 'Описание должно быть не менее 80 символов';
       labelTextarea.classList.add('item__label_active');
     } else {
-    if (goodId) {
-      fetchSenderEdit(newGood, goodId)
-    } else {
-      fetchSender(newGood);
+      if (goodId) {
+        console.log(newGood);
+        fetchSenderEdit(newGood, goodId);
+      } else {
+        fetchSender(newGood, 'goods');
+      }
+      resetForm();
     }
-    resetForm();}
   });
 };
 

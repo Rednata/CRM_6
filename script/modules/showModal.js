@@ -42,7 +42,8 @@ const showModal = async (goodEdit) => {
     
               <li class="item">
                 <label class="item__label" for="category">Категория</label>
-                <input class="item__input" type="text" name="category" id="category" required>
+                <input class="item__input" type="text" name="category" id="category" list="category-list" required>
+                <datalist id="category-list"></datalist>
               </li>
     
               <li class="item">
@@ -80,7 +81,7 @@ const showModal = async (goodEdit) => {
             
             <div class="form__wrapper-label-img">
               <label for="file" class="form__label">Добавить изображение
-                <input type="file" class="form__input" name="file" id="file">
+                <input type="file" class="form__input" name="file" id="file"  accept="image/*">
               </label>
               <div class="size__message">
                 
@@ -112,6 +113,7 @@ const showModal = async (goodEdit) => {
       units,
       category,
       discount,
+      image,
     } = goodEdit;
     overlay.querySelector('[name="title"]').value = title;
     overlay.querySelector('[name="category"]').value = category;
@@ -119,12 +121,17 @@ const showModal = async (goodEdit) => {
     overlay.querySelector('[name="descript"]').value = description;
     overlay.querySelector('[name="count"]').value = count;
     overlay.querySelector('[name="price"]').value = price;
+    console.log(image);
+
+    
+    // const src = 'https://determined-painted-hawthorn.glitch.me/' + image;
+    // console.log(src)
+
     if (discount) {
       const discountCheckbox = overlay.querySelector('.discount__checkbox');
 
       discountCheckbox.classList.add('discount__checkbox_checked');
       const discountInput = overlay.querySelector('.discount__input');
-      console.log(discountInput);
       discountInput.disabled = false;
 
       overlay.querySelector('[name="discount_descript"]').value = discount;

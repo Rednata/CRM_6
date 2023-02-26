@@ -59,6 +59,53 @@ const renderGoods = (goods) => {
   getSumTable(goods);
 };
 
-export {renderGoods, createRow};
+const renderConfirmDeleteModal = () => {
+  const div = document.createElement('div');
+  div.style.cssText = `
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    color: #ffffff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100px;
+    width: 320px;
+    z-index: 100;
+    background-color: #6e6893;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    `;
+  div.textContent = 'Вы точно хотите удалить этот товар?';
+  const btnWrap = document.createElement('div');
+  btnWrap.style.cssText = `
+    display: flex;
+    gap: 30px;
+  `;
+  const btnYes = document.createElement('button');
+  btnYes.textContent = 'Да';
+  const btnNo = document.createElement('button');
+  btnNo.textContent = 'Нет';
+  btnYes.style.cssText = `
+    height: 25px;
+    width: 60px;
+    border-radius: 10px;
+    border: none;
+  `;
+  btnNo.style.cssText = `
+    height: 25px;
+    width: 60px;
+    border-radius: 10px;
+    border: none;
+  `;
+  btnWrap.append(btnYes, btnNo);
+  div.append(btnWrap);
+  document.body.append(div);
+  return {div, btnYes, btnNo};
+};
+
+export {renderGoods, createRow, renderConfirmDeleteModal};
 
 

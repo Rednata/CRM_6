@@ -1,11 +1,22 @@
 
+export const toBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.addEventListener('loadend', () => {
+      resolve(reader.result);
+    });
+    reader.addEventListener('error', err => {
+      reject(err);
+    });
+    reader.readAsDataURL(file);
+  });
 
 const previewImg = () => {
   const fileInput = document.querySelector('.form__input');
   const errorMessage = document.querySelector('.size__message');
   const formWrapperLabelImg = document.querySelector('.form__wrapper-label-img');
 
-  fileInput.addEventListener('change', () => {
+  fileInput.addEventListener('change', async () => {
     errorMessage.innerHTML = '';
 
     if (document.querySelector('.form__img')) {
