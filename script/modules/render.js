@@ -30,17 +30,17 @@ const createRow = (item) => {
       <td>${sum}</td>
       <td>
         <button class="td__btn td__btn_picture" data-pic='${url}'>
-          <img src="./assets/clarity_picture-line.svg" 
+          <img src="assets/clarity_picture-line.svg" 
         </button>
       </td>
       <td>
       <button class="td__btn td__btn_edit">
-        <img src="./assets/icons_edit.svg" 
+        <img src="assets/icons_edit.svg" 
     </button>
       </td>
       <td>
         <button class="td__btn td__btn_cart">
-          <img src="./assets/cart.svg" 
+          <img src="assets/cart.svg" 
           alt="Корзина для удаления товара" class="td__img">
         </button>
       </td>`);

@@ -16,7 +16,7 @@ const previewImg = () => {
   const errorMessage = document.querySelector('.size__message');
   const formWrapperLabelImg = document.querySelector('.form__wrapper-label-img');
 
-  fileInput.addEventListener('change', async () => {
+  fileInput.addEventListener('change', () => {
     errorMessage.innerHTML = '';
 
     if (document.querySelector('.form__img')) {
@@ -27,7 +27,7 @@ const previewImg = () => {
       const sizeImg = fileInput.files[0].size;
 
       if (sizeImg < 1048576) {
-        formWrapperLabelImg.className = 'form__addImg';
+        // formWrapperLabelImg.className = 'form__addImg';
         const previewImg = document.createElement('img');
         previewImg.classList.add('form__img');
         formWrapperLabelImg.append(previewImg);

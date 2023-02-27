@@ -23,6 +23,7 @@ const getModalSumZero = () => {
 
 const changeForm = () => {
   const form = document.querySelector('.form');
+
   const discountCheckbox = form.querySelector('.discount__checkbox');
   const itemInputCount = form.querySelector('.item__input_count');
   const itemInputPrice = form.querySelector('.item__input_price');
@@ -85,6 +86,7 @@ const validForm = () => {
 
     if (target === inputTitle
       || target === inputCategory) {
+      console.log('Идет валидация');
       const reg = /[^А-ЯЁ ]/i;
       getValidInputValue(target, reg);
     } else if (target === inputUnits) {
@@ -104,12 +106,13 @@ const submitForm = (goodId) => {
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     const target = e.target;
     const formData = new FormData(target);
     const newGood = Object.fromEntries(formData);
 
-    newGood.image = await toBase64(newGood.file);
+    if (newGood.file.size > 0) {
+      newGood.image = await toBase64(newGood.file);
+    }
 
     if (newGood.descript.length < 80) {
       const labelTextarea = document.querySelector('.item_descript>.item__label');
@@ -117,7 +120,7 @@ const submitForm = (goodId) => {
       labelTextarea.classList.add('item__label_active');
     } else {
       if (goodId) {
-        console.log(newGood);
+        // console.log(newGood);
         fetchSenderEdit(newGood, goodId);
       } else {
         fetchSender(newGood, 'goods');

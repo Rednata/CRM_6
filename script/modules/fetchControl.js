@@ -1,9 +1,6 @@
 import { renderGoods } from './render.js';
-import { changeForm, resetForm, submitForm } from './functionForm.js';
+import { resetForm } from './functionForm.js';
 import { getSumTable } from './functionTable.js';
-import { showModal } from './showModal.js';
-import { previewImg } from './getImgFile.js';
-
 
 const url = 'https://determined-painted-hawthorn.glitch.me/api/';
 
@@ -63,15 +60,11 @@ const fetchSender = async (good, prefix) => {
 
 const fetchLoaderEdit = async (goodId) => {
   const response = await fetch(url + `${goodId}`);
-  const good = await response.json();
-  await showModal(good);
-  // previewImg(good.image);
-  changeForm();
-  submitForm(goodId);
-}
+  return await response.json();
+};
 
-const fetchSenderEdit = async (good, goodId) => {  
-  await fetch(url + `${goodId}`, {
+const fetchSenderEdit = async (good, goodId) => {
+  await fetch(url + `goods/${goodId}`, {
     method: 'PATCH',
     body: JSON.stringify({
       title: good.title,
@@ -92,10 +85,9 @@ const fetchSenderEdit = async (good, goodId) => {
 };
 
 const fetchDelete = async (goodId) => {
-  await fetch(url + `/${goodId}`, {
+  await fetch(url + `goods/${goodId}`, {
     method: 'DELETE'});
   fetchLoader('goods');
 };
-
 
 export {fetchLoader, fetchSender, fetchDelete, fetchSenderEdit, fetchLoaderEdit};

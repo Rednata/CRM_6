@@ -1,5 +1,9 @@
 import { fetchDelete, fetchLoaderEdit, fetchLoader } from './fetchControl.js';
+import { changeForm, submitForm, validForm } from './functionForm.js';
+import { previewImg } from './getImgFile.js';
 import { renderConfirmDeleteModal } from './render.js';
+import { showModal } from './showModal.js';
+import {renderDatalist} from './datalist.js';
 
 const tableBody = document.querySelector('.tbody');
 const subtitleCash = document.querySelector('.subtitle-cash');
@@ -14,32 +18,30 @@ const openNewWin = (url) => {
   const screenWidth = screen.width;
   const screenHeight = screen.height;
   const newWin = window.open(url, '', 'width=600,height=600');
-
   newWin.moveTo((screenWidth / 2 - 300), (screenHeight / 2) - 300);
 };
 
 const confirmDelete = (target) => {
   const modalConfirmDelete = renderConfirmDeleteModal();
-  const {div, btnYes, btnNo} = modalConfirmDelete;  
+  const {div, btnYes, btnNo} = modalConfirmDelete;
+  const row = target.closest('tr');
   btnYes.addEventListener('click', () => {
-    const row = target.closest('tr');
     const currentRowId = row.querySelector('#product-id').textContent;
     fetchDelete(currentRowId);
     row.remove();
     div.remove();
   });
   btnNo.addEventListener('click', () => {
+    row.classList.remove('tr_black-active');
     div.remove();
-  })
-
-  
+  });
 };
 
 const deleteItem = () => {
   tableBody.addEventListener('click', ({ target }) => {
     if (target.closest('.td__btn_cart')) {
+      target.closest('tr').classList.add('tr_black-active');
       confirmDelete(target);
-      
     }
   });
 };
@@ -49,8 +51,8 @@ const onViewPictureButtonClick = () => {
     if (target.closest('.td__btn_picture')) {
       const currentRow = target.closest('tr');
       const goodId = currentRow.firstChild.textContent;
-      const getItem = await fetchLoader(`goods/${goodId}`, console.log);
-      const url = 'https://determined-painted-hawthorn.glitch.me/' + getItem.image;      
+      const getItem = await fetchLoader(`goods/${goodId}`, () => {});
+      const url = 'https://determined-painted-hawthorn.glitch.me/' + getItem.image;
       // const url = target.closest('.td__btn_picture').dataset.pic;
       openNewWin(url);
     }
@@ -58,14 +60,18 @@ const onViewPictureButtonClick = () => {
 };
 
 const onEditButtonClick = () => {
-  document.body.addEventListener('click', ({target}) => {
+  document.body.addEventListener('click', async ({target}) => {
     if (target.closest('.td__btn_edit')) {
       const currentRow = target.closest('tr');
       const goodId = currentRow.firstChild.textContent;
-      const t = fetchLoaderEdit(`goods/${goodId}`);
+      const good = await fetchLoaderEdit(`goods/${goodId}`);
 
-      
-      console.warn(t);
+      await showModal(good);
+      changeForm();
+      previewImg();
+      validForm();
+      renderDatalist();
+      submitForm(goodId);
     }
   });
 };
@@ -82,7 +88,6 @@ const unPasteCurrentRow = () => {
   tableBody.addEventListener('mouseout', ({target}) => {
     if (target.closest('tr')) {
       target.closest('tr').classList.remove('tr_active');
-      
     }
   });
 };
