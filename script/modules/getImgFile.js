@@ -1,4 +1,15 @@
 
+export const toBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.addEventListener('loadend', () => {
+      resolve(reader.result);
+    });
+    reader.addEventListener('error', err => {
+      reject(err);
+    });
+    reader.readAsDataURL(file);
+  });
 
 const previewImg = () => {
   const fileInput = document.querySelector('.form__input');
@@ -16,7 +27,7 @@ const previewImg = () => {
       const sizeImg = fileInput.files[0].size;
 
       if (sizeImg < 1048576) {
-        formWrapperLabelImg.className = 'form__addImg';
+        // formWrapperLabelImg.className = 'form__addImg';
         const previewImg = document.createElement('img');
         previewImg.classList.add('form__img');
         formWrapperLabelImg.append(previewImg);

@@ -1,7 +1,6 @@
 import {loadStyle} from './loadStyle.js';
 import { closeModal } from './functionForm.js';
 
-
 const showModal = async (goodEdit) => {
   await loadStyle('./style/crm.css');
 
@@ -42,7 +41,8 @@ const showModal = async (goodEdit) => {
     
               <li class="item">
                 <label class="item__label" for="category">Категория</label>
-                <input class="item__input" type="text" name="category" id="category" required>
+                <input class="item__input" type="text" name="category" id="category" list="category-list" required>
+                <datalist id="category-list"></datalist>
               </li>
     
               <li class="item">
@@ -79,8 +79,9 @@ const showModal = async (goodEdit) => {
             </ul>
             
             <div class="form__wrapper-label-img">
-              <label for="file" class="form__label">Добавить изображение
-                <input type="file" class="form__input" name="file" id="file">
+              <label for="file" class="form__label data-content="Добавить изображение">Добавить изображение
+                <input type="file" class="form__input" name="file" id="file"  accept="image/*">
+                <span class="form__label_span">Добавить изображение</span>
               </label>
               <div class="size__message">
                 
@@ -105,6 +106,7 @@ const showModal = async (goodEdit) => {
 
   if (goodEdit) {
     const {
+      id,
       title,
       price,
       description,
@@ -112,28 +114,40 @@ const showModal = async (goodEdit) => {
       units,
       category,
       discount,
+      image,
     } = goodEdit;
+    console.log(id);
+    overlay.querySelector('.vendor-code__id').textContent = id;
     overlay.querySelector('[name="title"]').value = title;
     overlay.querySelector('[name="category"]').value = category;
     overlay.querySelector('[name="units"]').value = units;
     overlay.querySelector('[name="descript"]').value = description;
     overlay.querySelector('[name="count"]').value = count;
     overlay.querySelector('[name="price"]').value = price;
+
     if (discount) {
       const discountCheckbox = overlay.querySelector('.discount__checkbox');
 
       discountCheckbox.classList.add('discount__checkbox_checked');
       const discountInput = overlay.querySelector('.discount__input');
-      console.log(discountInput);
       discountInput.disabled = false;
 
       overlay.querySelector('[name="discount_descript"]').value = discount;
+    };
+    if (image !== 'image/notimage.jpg') {
+      const formLabelSpan = overlay.querySelector('.form__label_span');
+      formLabelSpan.textContent = 'Изменить изображение';
+      const formWrapperLabelImg = overlay.querySelector('.form__wrapper-label-img');       
+      // formWrapperLabelImg.className = 'form__addImg';
+      const previewImg = document.createElement('img');
+      previewImg.classList.add('form__img');
+      formWrapperLabelImg.append(previewImg);
+      const src = 'https://determined-painted-hawthorn.glitch.me/' + image;
+      previewImg.src = src;
     }
   }
-
   document.body.prepend(overlay);
   closeModal();
-
   return overlay.querySelector('.form');
 };
 

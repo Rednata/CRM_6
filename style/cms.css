@@ -131,6 +131,14 @@ tr {
   border-bottom: 1px solid var(--table-border-color);
 }
 
+.tr_active {  
+  background-color: rgba(245, 241, 255, 0.8)
+}
+
+.tr_black-active {
+  background-color: rgba(219, 209, 241, 0.8)
+}
+
 .tr-none {
   display: none;
 }

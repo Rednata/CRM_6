@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="./script/script.js" type="module"></script>
-  <link rel="stylesheet" href="./index.css">  
+  <script src="script/script.js" type="module"></script>
+  <link rel="stylesheet" href="index.css">  
   <title>CMS</title>
 </head>
 
@@ -32,11 +32,11 @@
         <button class="features__filter">Фильтр</button>
         <form class="features__form" action="https://jsonplaceholder.typicode.com/posts" method="post">
           <button class="features__search"></button>
-          <input class="features__input" type="search" placeholder="Поиск по наименованию и категории">
+          <input class="features__input" name="search" type="search" list="search-list" placeholder="Поиск по наименованию и категории">
         </form>
           <button class="button features__button">Добавить товар</button>
       </div>
-      
+
       <table class="table">
 
         <thead class="thead">
