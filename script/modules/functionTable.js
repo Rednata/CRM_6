@@ -14,12 +14,11 @@ const getSumTable = (goods) => {
   subtitleCash.textContent = totalProductPrice;
 };
 
-const openNewWin = (url) => {
+const openNewWin = (url, currentRow) => {
   const screenWidth = screen.width;
   const screenHeight = screen.height;
   const newWin = window.open(url, '', 'width=600,height=600');
   newWin.moveTo((screenWidth / 2 - 300), (screenHeight / 2) - 300);
-  return newWin;
 };
 
 const confirmDelete = (target) => {
@@ -51,22 +50,11 @@ const onViewPictureButtonClick = () => {
   tableBody.addEventListener('click', async ({ target }) => {
     if (target.closest('.td__btn_picture')) {
       const currentRow = target.closest('tr');
-      target.closest('tr').classList.add('tr_black-active');
       const goodId = currentRow.firstChild.textContent;
       const getItem = await fetchLoader(`goods/${goodId}`, () => {});
       const url = 'https://determined-painted-hawthorn.glitch.me/' + getItem.image;
 
-      const newWinImg = openNewWin(url);
-      console.dir(newWinImg);
-      new Promise(resolve => {
-        if (newWinImg.closed) {
-          resolve();
-        }
-      })
-          .then(() => {
-            console.log('++++++');
-            target.closest('tr').classList.remove('tr_black-active');
-          });
+      openNewWin(url, currentRow);
     }
   });
 };
