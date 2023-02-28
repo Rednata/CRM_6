@@ -106,6 +106,7 @@ const showModal = async (goodEdit) => {
 
   if (goodEdit) {
     const {
+      id,
       title,
       price,
       description,
@@ -115,6 +116,8 @@ const showModal = async (goodEdit) => {
       discount,
       image,
     } = goodEdit;
+    console.log(id);
+    overlay.querySelector('.vendor-code__id').textContent = id;
     overlay.querySelector('[name="title"]').value = title;
     overlay.querySelector('[name="category"]').value = category;
     overlay.querySelector('[name="units"]').value = units;
