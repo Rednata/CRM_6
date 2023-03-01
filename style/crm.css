@@ -82,13 +82,7 @@
   width: 100%;
   border: none;
   background-color: var(--unknown-color);  
-}
-
-.item__input:focus, 
-.item__input:active,
-.item__textarea:focus, 
-.item__textarea:active {
-  outline: 1px solid rgb(230, 205, 126); 
+  padding: 10px;
 }
 
 .item_descript {
@@ -107,6 +101,7 @@
   width: 100%;
   border: none;
   background-color: var(--unknown-color);
+  padding: 10px;
 }
 
 .item_descript>.item__label_active {
@@ -120,7 +115,11 @@
 .item__textarea:active,
 .item__textarea:focus,
 .item__input:active,
-.item__input:focus {
+.item__input:focus,
+.discount__checkbox:active,
+.discount__checkbox:focus,
+.discount__input:active,
+.discount__input:focus {
   border: 2px solid rgb(226, 166, 55);
   outline: none;
 }
@@ -143,6 +142,8 @@
   width: 40px;  
   background-color: var(--unknown-color);
   border-radius: 6px;
+  padding: 10px;
+  border: none;
 }
 
 .discount__checkbox:checked {
@@ -164,6 +165,8 @@
   background-color: var(--unknown-color);
   border: none;
   border-radius: 6px;
+  padding: 10px;
+  border: none;
 }
 
 .form__label {
