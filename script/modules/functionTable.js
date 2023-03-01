@@ -18,7 +18,12 @@ const openNewWin = (url, currentRow) => {
   const screenWidth = screen.width;
   const screenHeight = screen.height;
   const newWin = window.open(url, '', 'width=600,height=600');
-  newWin.moveTo((screenWidth / 2 - 300), (screenHeight / 2) - 300);
+  const browser = (newWin.navigator.userAgent).toLowerCase().slice(0, 5);
+  if (browser === 'safari') {
+    newWin.moveToObject((screenWidth / 2 - 300), (screenHeight / 2) - 300);
+  } else {
+    newWin.moveTo((screenWidth / 2 - 300), (screenHeight / 2) - 300);
+  }
 };
 
 const confirmDelete = (target) => {
@@ -76,21 +81,6 @@ const onEditButtonClick = () => {
   });
 };
 
-const pasteCurrentRow = () => {
-  tableBody.addEventListener('mouseover', ({target}) => {
-    if (target.closest('tr')) {
-      target.closest('tr').classList.add('tr_active');
-    }
-  });
-};
-
-const unPasteCurrentRow = () => {
-  tableBody.addEventListener('mouseout', ({target}) => {
-    if (target.closest('tr')) {
-      target.closest('tr').classList.remove('tr_active');
-    }
-  });
-};
 
 export { getSumTable, deleteItem, onViewPictureButtonClick, 
-  getSumProperty, onEditButtonClick, pasteCurrentRow, unPasteCurrentRow };
+  getSumProperty, onEditButtonClick };

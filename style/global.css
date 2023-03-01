@@ -72,5 +72,6 @@ body {
     font-family: Inter, Arial, sans-serif;
     font-weight: 500;
     font-size: 14px;
-    color: var(--main-name-color);        
+    color: var(--main-name-color);    
+    background-color: var(--container-color);    
 }
