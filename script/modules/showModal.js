@@ -86,7 +86,6 @@ const showModal = async (goodEdit) => {
               <div class="size__message">
                 
               </div>
-              
             </div>
             
           </div>  
@@ -116,7 +115,7 @@ const showModal = async (goodEdit) => {
       discount,
       image,
     } = goodEdit;
-    console.log(id);
+
     overlay.querySelector('.vendor-code__id').textContent = id;
     overlay.querySelector('[name="title"]').value = title;
     overlay.querySelector('[name="category"]').value = category;
@@ -124,6 +123,8 @@ const showModal = async (goodEdit) => {
     overlay.querySelector('[name="descript"]').value = description;
     overlay.querySelector('[name="count"]').value = count;
     overlay.querySelector('[name="price"]').value = price;
+    const sum = overlay.querySelector('.footer__sum-cash');
+    sum.textContent = count * price;
 
     if (discount) {
       const discountCheckbox = overlay.querySelector('.discount__checkbox');
@@ -138,12 +139,15 @@ const showModal = async (goodEdit) => {
       const formLabelSpan = overlay.querySelector('.form__label_span');
       formLabelSpan.textContent = 'Изменить изображение';
       const formWrapperLabelImg = overlay.querySelector('.form__wrapper-label-img');       
-      // formWrapperLabelImg.className = 'form__addImg';
-      const previewImg = document.createElement('img');
-      previewImg.classList.add('form__img');
-      formWrapperLabelImg.append(previewImg);
-      const src = 'https://determined-painted-hawthorn.glitch.me/' + image;
-      previewImg.src = src;
+      formWrapperLabelImg.className = 'form__addImg';
+                  
+        const previewImg = document.createElement('img');
+        previewImg.classList.add('form__img');
+        const src = 'https://determined-painted-hawthorn.glitch.me/' + image;
+        previewImg.src = src;
+
+      formWrapperLabelImg.append(previewImg)
+      
     }
   }
   document.body.prepend(overlay);
