@@ -3,7 +3,7 @@ import { onfeaturesButtonClick } from './modules/controlModal.js';
 import {makeSearch} from './modules/search.js';
 import {
   deleteItem, onEditButtonClick, onViewPictureButtonClick,
-  pasteCurrentRow, unPasteCurrentRow } from './modules/functionTable.js';
+} from './modules/functionTable.js';
 
 const init = () => {
   fetchLoader('goods');
@@ -11,8 +11,6 @@ const init = () => {
   onViewPictureButtonClick();
   deleteItem();
   onEditButtonClick();
-  pasteCurrentRow();
-  unPasteCurrentRow();  
   makeSearch();
 };
 
